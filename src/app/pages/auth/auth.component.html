@@ -1,13 +1,13 @@
 <form nz-form [formGroup]="authForm" class="login-form" (ngSubmit)="submitForm()">
   <nz-form-item>
-    <nz-form-control nzErrorTip="Please input your username!">
+    <nz-form-control nzErrorTip="Введите логин!">
       <nz-input-group nzPrefixIcon="user">
         <input type="text" nz-input formControlName="userName" placeholder="Логин" />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-control nzErrorTip="Please input your Password!">
+    <nz-form-control nzErrorTip="Введите пароль!">
       <nz-input-group nzPrefixIcon="lock">
         <input type="password" nz-input formControlName="password" placeholder="Пароль" />
       </nz-input-group>
