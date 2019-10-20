@@ -1,0 +1,27 @@
+<app-layout>
+  <div class="wrapper">
+    <h2>Account form</h2>
+    <form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="email">E-mail</nz-form-label>
+        <nz-form-control nzErrorTip="Неверный email">
+          <input nz-input type="text" formControlName="email" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="phoneNumber">Телефон</nz-form-label>
+        <nz-form-control nzErrorTip="Неверный номер телефона">
+          <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+            <ng-template #addOnBeforeTemplate>
+              <nz-select formControlName="phoneNumberPrefix" class="phone-select">
+                <nz-option *ngFor="let prefix of prefixes" [nzLabel]="prefix" [nzValue]="prefix"></nz-option>
+              </nz-select>
+            </ng-template>
+            <input type="text" nz-input formControlName="phoneNumber">
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <button nz-button nzType="primary">Подтвердить</button>
+    </form>
+  </div>
+</app-layout>
