@@ -1,0 +1,34 @@
+@import '../../../theme.less';
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: 0 auto;
+
+  .content {
+    width: 100%;
+    margin-right: 60px;
+  }
+
+  .settings {
+    min-width: max-content;
+
+    &-type {
+      margin: @padding-lg 0 @padding-sm 0;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        cursor: pointer;
+      }
+
+      .like-rate {
+        height: 30px;
+      }
+    }
+  }
+}

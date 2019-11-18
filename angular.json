@@ -33,8 +33,7 @@
             ],
             "styles": [
               "src/theme.less",
-              "src/styles.less",
-              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
+              "src/styles.less"
             ],
             "scripts": [],
             "es5BrowserSupport": true

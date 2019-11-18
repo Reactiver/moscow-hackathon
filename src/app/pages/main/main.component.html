@@ -1,0 +1,31 @@
+<app-layout>
+  <div class="wrapper">
+    <div class="content">
+      <nz-skeleton [nzActive]="true"></nz-skeleton>
+      <nz-skeleton [nzActive]="true"></nz-skeleton>
+    </div>
+    <div class="settings">
+      <h3 class="settings-type">Рейтинг</h3>
+      <nz-radio-group [(ngModel)]="radioValue" class="radio-group">
+        <label nz-radio nzValue="2">От <nz-rate [ngModel]="2" nzDisabled></nz-rate></label>
+        <label nz-radio nzValue="3">От <nz-rate [ngModel]="3" nzDisabled></nz-rate></label>
+        <label nz-radio nzValue="4">От <nz-rate [ngModel]="4" nzDisabled></nz-rate></label>
+        <label nz-radio nzValue="0" [style.marginTop.px]="5">Любой</label>
+      </nz-radio-group>
+      <h3 class="settings-type">Количество ядер</h3>
+      <nz-slider
+        [(ngModel)]="params"
+        [nzMax]="32"
+      ></nz-slider>
+      <h3 class="settings-type">Цена</h3>
+      <nz-slider
+        nzRange
+        [nzMin]="100"
+        [nzMax]="1000"
+        [nzStep]="100"
+        [nzMarks]="marks"
+        [(ngModel)]="price"
+      ></nz-slider>
+    </div>
+  </div>
+</app-layout>

@@ -12,7 +12,8 @@ nz-header {
 }
 
 nz-content {
-  margin: 0 16px;
+  padding: 0 140px;
+  background-color: white;
 }
 
 nz-breadcrumb {
@@ -40,6 +41,44 @@ nz-layout {
   height: calc(100% - 64px);
 }
 
-nz-page-header {
-  border-bottom: 1px solid @normal-color;
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 100px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 8px #f0f1f2;
+
+  .logo-and-search {
+    display: flex;
+    width: 500px;
+
+    .logo {
+      min-width: max-content;
+      margin: 0 @padding-lg 0 0;
+    }
+  }
+
+  .navigation {
+    display: flex;
+    align-items: center;
+
+    .nav {
+      margin-right: @padding-sm;
+      display: flex;
+
+      &-item {
+        margin-right: @padding-md;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+.content {
+  margin-top: 40px;
+}
+
+nz-footer {
+  border-top: 1px solid @normal-color;
 }

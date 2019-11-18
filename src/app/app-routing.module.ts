@@ -5,6 +5,7 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TestComponent } from './pages/test/test.component';
 import { AuthGuard } from './core/auth/auth.guard';
+import { MainComponent } from './pages/main/main.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
+    component: MainComponent,
   },
   {
     path: 'test',

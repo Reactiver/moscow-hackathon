@@ -1,36 +1,28 @@
 <nz-layout>
-  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" nzWidth="200px">
-    <div class="logo"></div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzTitle="Страницы" nzIcon="user">
-        <ul>
-          <li nz-menu-item><a [routerLink]="'/'">Главная</a></li>
-          <li nz-menu-item><a [routerLink]="'/auth'"></a>Авторизация</li>
-          <li nz-menu-item><a [routerLink]="'/test'"></a>Тест</li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="Разработчики" nzIcon="team">
-        <ul>
-          <li nz-menu-item>Команда А</li>
-          <li nz-menu-item>Команда Б</li>
-        </ul>
-      </li>
-      <li nz-menu-item>
-        <i nz-icon nzType="file"></i>
-        <span>Файл</span>
-      </li>
-    </ul>
-  </nz-sider>
-  <nz-layout>
-    <nz-page-header (nzBack)="onBack()" nzBackIcon nzTitle="Title" nzSubtitle="This is a subtitle">
-      <nz-page-header-extra>
-        <button nz-button nzType="primary" (click)="logout()">Выйти</button>
-      </nz-page-header-extra>
-    </nz-page-header>
-    <nz-content>
-      <div #content><ng-content></ng-content></div>
-      <div class="empty"><nz-empty *ngIf="!content.innerHTML.trim()"></nz-empty></div>
-    </nz-content>
-    <nz-footer>Ant Design ©2019 Implement By Angular</nz-footer>
-  </nz-layout>
+  <header>
+    <div class="logo-and-search">
+      <h2 class="logo">Successful Market</h2>
+      <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
+        <input type="text" nz-input placeholder="Программа, сервис, it-решение" />
+      </nz-input-group>
+      <ng-template #suffixButton>
+        <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+      </ng-template>
+    </div>
+    <div class="navigation">
+      <nav class="nav">
+        <h3 class="nav-item"><a>Все категории</a></h3>
+        <h3 class="nav-item"><a>Тендер</a></h3>
+        <h3 class="nav-item"><a>Ярмарка продуктов</a></h3>
+      </nav>
+      <nz-avatar class="avatar" nzSize="large" nzIcon="user"></nz-avatar>
+    </div>
+  </header>
+  <nz-content>
+    <div #content class="content"><ng-content></ng-content></div>
+    <!--      <div class="empty"><nz-empty *ngIf="!content.innerHTML.trim()"></nz-empty></div>-->
+  </nz-content>
+  <nz-footer
+    >Footer. Тут можно будет что-нибудь добавить контакты, ссылки, адрес, email..</nz-footer
+  >
 </nz-layout>
