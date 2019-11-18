@@ -129,6 +129,8 @@ Read more about MIT at [TLDRLegal](https://tldrlegal.com/license/mit-license).
 ng-zorro-antd
 MIT
 
+ng-zorro-antd/avatar
+
 ng-zorro-antd/button
 
 ng-zorro-antd/checkbox
@@ -145,23 +147,27 @@ ng-zorro-antd/input
 
 ng-zorro-antd/layout
 
-ng-zorro-antd/menu
-
 ng-zorro-antd/message
 
 ng-zorro-antd/modal
 
 ng-zorro-antd/notification
 
-ng-zorro-antd/page-header
-
 ng-zorro-antd/popconfirm
 
 ng-zorro-antd/popover
 
+ng-zorro-antd/radio
+
+ng-zorro-antd/rate
+
 ng-zorro-antd/result
 
 ng-zorro-antd/select
+
+ng-zorro-antd/skeleton
+
+ng-zorro-antd/slider
 
 ng-zorro-antd/tooltip
 
@@ -189,6 +195,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+
+undefined
 
 rxjs
 Apache-2.0
@@ -501,6 +509,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-
-undefined
