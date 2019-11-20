@@ -9,12 +9,12 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 let routes: Routes;
 routes = [
   {
-    path: 'auth',
-    component: AuthComponent,
-  },
-  {
     path: '',
     component: MainComponent,
+  },
+  {
+    path: 'auth',
+    component: AuthComponent,
   },
   {
     path: 'test',

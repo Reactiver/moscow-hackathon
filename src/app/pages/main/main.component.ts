@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMarks } from 'ng-zorro-antd';
-import {SearchService} from "../../core/services/search.service";
+import { SearchService } from '../../core/services/search.service';
 
 type SortType = 'price' | 'rate' | 'feedback' | null;
 
