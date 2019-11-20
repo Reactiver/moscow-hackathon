@@ -6,8 +6,7 @@ import { AuthGuard } from './core/auth/auth.guard';
 import { AuthComponent } from './pages/auth/auth.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
-let routes: Routes;
-routes = [
+const routes: Routes = [
   {
     path: '',
     component: MainComponent,
