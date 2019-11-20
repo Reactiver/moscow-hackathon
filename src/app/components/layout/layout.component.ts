@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SearchService } from '../../core/services/search.service';
 
 @Component({
   selector: 'app-layout',
@@ -8,5 +9,9 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, public searchService: SearchService) {}
+
+  setCategory(category: string) {
+    this.searchService.setCategory(category);
+  }
 }

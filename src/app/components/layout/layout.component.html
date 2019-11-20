@@ -11,7 +11,23 @@
     </div>
     <div class="navigation">
       <nav class="nav">
-        <h3 class="nav-item"><a>Все категории</a></h3>
+        <h3 class="nav-item">
+          <a nz-dropdown [nzDropdownMenu]="menu">
+            Все категории
+            <i nz-icon nzType="down"></i>
+          </a>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li
+                *ngFor="let category of searchService.categories"
+                (click)="setCategory(category)"
+                nz-menu-item
+              >
+                {{ category }}
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </h3>
         <h3 class="nav-item"><a>Тендер</a></h3>
         <h3 class="nav-item"><a>Ярмарка продуктов</a></h3>
       </nav>

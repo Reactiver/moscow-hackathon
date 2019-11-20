@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './components/layout/layout.component';
-import { AuthComponent } from './pages/auth/auth.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { MainComponent } from './pages/main/main.component';
 import { TestComponent } from './pages/test/test.component';
 import { AuthGuard } from './core/auth/auth.guard';
-import { MainComponent } from './pages/main/main.component';
+import { AuthComponent } from './pages/auth/auth.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
-const routes: Routes = [
+let routes: Routes;
+routes = [
   {
     path: 'auth',
     component: AuthComponent,

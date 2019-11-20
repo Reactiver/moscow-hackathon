@@ -1,8 +1,37 @@
 <app-layout>
   <div class="wrapper">
     <div class="content">
-      <nz-skeleton [nzActive]="true"></nz-skeleton>
-      <nz-skeleton [nzActive]="true"></nz-skeleton>
+      <h2>{{ searchService.category$ | async }}</h2>
+      <p>
+        Сортировать:
+        <span
+          class="sort-item"
+          [class.sort-item--active]="sortType === 'price'"
+          (click)="sortBy('price')"
+          >по цене
+          <i
+            *ngIf="sortType === 'price'"
+            [style.transform]="'translateY(2px)'"
+            nz-icon
+            nzType="{{ priceType }}"
+            nzTheme="outline"
+          ></i
+        ></span>
+        <span
+          class="sort-item"
+          [class.sort-item--active]="sortType === 'rate'"
+          (click)="sortBy('rate')"
+          >по рейтингу</span
+        ><span
+          class="sort-item"
+          [class.sort-item--active]="sortType === 'feedback'"
+          (click)="sortBy('feedback')"
+          >по отзывам
+        </span>
+      </p>
+
+<!--      <app-product></app-product>-->
+
     </div>
     <div class="settings">
       <h3 class="settings-type">Рейтинг</h3>
@@ -13,10 +42,7 @@
         <label nz-radio nzValue="0" [style.marginTop.px]="5">Любой</label>
       </nz-radio-group>
       <h3 class="settings-type">Количество ядер</h3>
-      <nz-slider
-        [(ngModel)]="params"
-        [nzMax]="32"
-      ></nz-slider>
+      <nz-slider [(ngModel)]="params" [nzMax]="32"></nz-slider>
       <h3 class="settings-type">Цена</h3>
       <nz-slider
         nzRange

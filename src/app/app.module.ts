@@ -9,8 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import ru from '@angular/common/locales/ru';
-import { SharedModule } from './shared/shared.module';
-import { PagesModule } from './pages/pages.module';
 import { ComponentsModule } from './components/components.module';
 
 registerLocaleData(ru);
@@ -23,8 +21,6 @@ registerLocaleData(ru);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    SharedModule,
-    PagesModule,
     ReactiveFormsModule,
     ComponentsModule,
   ],
