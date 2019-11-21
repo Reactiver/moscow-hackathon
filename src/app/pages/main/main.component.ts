@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMarks } from 'ng-zorro-antd';
 import { SearchService } from '../../core/services/search.service';
+import { ProductService } from '../../core/services/product.service';
 
 type SortType = 'price' | 'rate' | 'feedback' | null;
 
@@ -26,7 +27,10 @@ export class MainComponent implements OnInit {
   sortType: SortType = null;
   priceType: 'up' | 'down' = 'up';
 
-  constructor(public readonly searchService: SearchService) {}
+  constructor(
+    public readonly searchService: SearchService,
+    public readonly productService: ProductService
+  ) {}
 
   ngOnInit() {}
 
