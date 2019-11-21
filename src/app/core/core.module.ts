@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SearchService } from './services/search.service';
+import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
 import { RussianCurrencyPipe } from './pipes/russian-currency.pipe';
 import { CommentsPipe } from './pipes/comments.pipe';
+import { FirstUpPipe } from './pipes/first-up.pipe';
 
 @NgModule({
-  declarations: [RussianCurrencyPipe, CommentsPipe],
+  declarations: [RussianCurrencyPipe, CommentsPipe, FirstUpPipe],
   imports: [CommonModule],
-  exports: [RussianCurrencyPipe, CommentsPipe],
-  providers: [SearchService, ProductService],
+  exports: [RussianCurrencyPipe, CommentsPipe, FirstUpPipe],
+  providers: [CategoryService, ProductService],
 })
 export class CoreModule {}

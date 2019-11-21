@@ -5,11 +5,16 @@ import { TestComponent } from './pages/test/test.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { AuthComponent } from './pages/auth/auth.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ProductComponent } from './pages/product/product.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'category/:category',
     component: MainComponent,
+  },
+  {
+    path: 'category/:category/product/:id',
+    component: ProductComponent,
   },
   {
     path: 'auth',
@@ -19,6 +24,11 @@ const routes: Routes = [
     path: 'test',
     component: TestComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: '',
+    redirectTo: '/category/popular',
+    pathMatch: 'full',
   },
   {
     path: '**',

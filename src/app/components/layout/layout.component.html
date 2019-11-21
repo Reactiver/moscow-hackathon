@@ -1,7 +1,7 @@
 <nz-layout>
   <header>
     <div class="logo-and-search">
-      <h2 class="logo">Successful Market</h2>
+      <h2 class="logo"><a routerLink="/">Successful Market</a></h2>
       <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
         <input type="text" nz-input placeholder="Программа, сервис, it-решение" />
       </nz-input-group>
@@ -18,12 +18,8 @@
           </a>
           <nz-dropdown-menu #menu="nzDropdownMenu">
             <ul nz-menu nzSelectable>
-              <li
-                *ngFor="let category of searchService.categories"
-                (click)="setCategory(category)"
-                nz-menu-item
-              >
-                {{ category }}
+              <li *ngFor="let category of categoryService.categories" nz-menu-item>
+                <a [routerLink]="['/category/', category]">{{ category | firstUp }}</a>
               </li>
             </ul>
           </nz-dropdown-menu>

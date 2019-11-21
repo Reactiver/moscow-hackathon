@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NzMarks } from 'ng-zorro-antd';
-import { SearchService } from '../../core/services/search.service';
+import { CategoryService } from '../../core/services/category.service';
 import { ProductService } from '../../core/services/product.service';
+import { ActivatedRoute } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { ReplaySubject } from 'rxjs';
 
 type SortType = 'price' | 'rate' | 'feedback' | null;
 
@@ -10,7 +13,8 @@ type SortType = 'price' | 'rate' | 'feedback' | null;
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.less'],
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
+  category: string;
   radioValue: any;
   price = [100, 1000];
   params: any;
@@ -26,13 +30,23 @@ export class MainComponent implements OnInit {
 
   sortType: SortType = null;
   priceType: 'up' | 'down' = 'up';
+  private destroy = new ReplaySubject<void>();
 
   constructor(
-    public readonly searchService: SearchService,
-    public readonly productService: ProductService
+    public readonly productService: ProductService,
+    private readonly route: ActivatedRoute
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.paramMap.pipe(takeUntil(this.destroy)).subscribe(params => {
+      this.category = params.get('category');
+    });
+  }
+
+  ngOnDestroy() {
+    this.destroy.next(null);
+    this.destroy.complete();
+  }
 
   sortBy(type: SortType) {
     this.sortType = type;

@@ -8,9 +8,10 @@ import { TestComponent } from './test/test.component';
 import { MainComponent } from './main/main.component';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { CoreModule } from '../core/core.module';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
-  declarations: [AuthComponent, NotFoundComponent, TestComponent, MainComponent],
+  declarations: [AuthComponent, NotFoundComponent, TestComponent, MainComponent, ProductComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

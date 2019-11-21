@@ -1,0 +1,28 @@
+<div class="photo">
+  <img src="{{ product.imageUrl }}" alt="{{ product.title }}" />
+</div>
+<div class="content">
+  <h2 class="title">
+    <a [routerLink]="['product/', product.id]">{{ product.title }}</a>
+  </h2>
+  <div class="rating">
+    <nz-tag
+      [nzColor]="product.rating >= 4 ? 'green' : 'orange'"
+      nz-tooltip
+      nzTooltipTitle="Рейтинг {{ product.rating }} из 5"
+      nzTooltipPlacement="right"
+    >
+      {{ product.rating }}</nz-tag
+    >
+    <span class="comments">{{ product.comments | comments }}</span>
+  </div>
+  <p class="info">
+    {{ product.info }}
+  </p>
+</div>
+<div class="about">
+  <h2 class="price">{{ product.price | russianCurrency }}</h2>
+  <p class="vendor">{{ product.author }}</p>
+</div>
+
+<!--<nz-skeleton [nzActive]="true"></nz-skeleton>-->

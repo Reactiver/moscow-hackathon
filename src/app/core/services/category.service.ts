@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
-export class SearchService {
+export class CategoryService {
   categories = [
-    'Популярное',
-    'Бизнес',
-    'Aвтомобили',
-    'Медицина',
-    'Мероприятия',
-    'Музыка и аудио',
-    'Новости и журналы',
-    'Образование',
+    '',
+    'популярное',
+    'бизнес',
+    'автомобили',
+    'медицина',
+    'мероприятия',
+    'музыка и аудио',
+    'новости и журналы',
+    'образование',
   ];
   private category = new BehaviorSubject<string>(this.categories[0]);
   readonly category$: Observable<string> = this.category.asObservable();

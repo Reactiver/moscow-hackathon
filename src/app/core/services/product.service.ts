@@ -25,7 +25,7 @@ export class ProductService {
         'reprehenderit sed tempora tempore!',
       rating: 4.5,
       comments: 423,
-      imageUrl: 'http://placehold.it/120x120',
+      imageUrl: 'https://placehold.it/120x120',
       price: 51342,
       author: 'Sonic Studio',
     },
@@ -39,9 +39,21 @@ export class ProductService {
         'reprehenderit sed tempora tempore!',
       rating: 4.8,
       comments: 11,
-      imageUrl: 'http://placehold.it/120x120',
+      imageUrl: 'https://placehold.it/120x120',
       price: 1234,
       author: 'Reactive LTD',
+    },
+    {
+      id: 3,
+      title: 'Админка',
+      info:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+        'Accusantium consequatur dolorum esse eveniet ex, expedita harum ',
+      rating: 3.2,
+      comments: 7,
+      imageUrl: 'https://placehold.it/120x120',
+      price: 3228,
+      author: 'Test Corp',
     },
   ]);
   public products$ = this.products.asObservable();

@@ -3,12 +3,12 @@ import { NgModule } from '@angular/core';
 import { LayoutComponent } from './layout/layout.component';
 import { RouterModule } from '@angular/router';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { ProductComponent } from './product/product.component';
+import { ProductItemComponent } from './product-item/product-item.component';
 import {CoreModule} from "../core/core.module";
 
 @NgModule({
-  declarations: [LayoutComponent, ProductComponent],
+  declarations: [LayoutComponent, ProductItemComponent],
   imports: [CommonModule, RouterModule, NgZorroAntdModule, CoreModule],
-  exports: [LayoutComponent, ProductComponent],
+  exports: [LayoutComponent, ProductItemComponent],
 })
 export class ComponentsModule {}

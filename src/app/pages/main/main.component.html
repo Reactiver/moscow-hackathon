@@ -1,7 +1,7 @@
 <app-layout>
   <div class="wrapper">
     <div class="content">
-      <h2>{{ searchService.category$ | async }}</h2>
+      <h2>{{ category | firstUp }}</h2>
       <p>
         Сортировать:
         <span
@@ -31,7 +31,7 @@
       </p>
 
       <ng-container *ngFor="let product of productService.products$ | async">
-        <app-product [product]="product"></app-product>
+        <app-product-item [product]="product"></app-product-item>
       </ng-container>
 
     </div>
