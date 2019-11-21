@@ -165,9 +165,9 @@ ng-zorro-antd/result
 
 ng-zorro-antd/select
 
-ng-zorro-antd/skeleton
-
 ng-zorro-antd/slider
+
+ng-zorro-antd/tag
 
 ng-zorro-antd/tooltip
 
