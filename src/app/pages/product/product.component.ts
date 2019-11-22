@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly productService: ProductService,
-    private commentsService: CommentsService
+    public commentsService: CommentsService
   ) {}
 
   ngOnInit() {
