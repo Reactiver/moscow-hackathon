@@ -1,3 +1,33 @@
 <app-layout>
-  <p>product {{ id }}</p>
+  <app-product-item [product]="product$ | async" [fullSize]="true"></app-product-item>
+  <div class="comments">
+    <h2>Комментарии:</h2>
+    <nz-comment
+      *ngFor="let comment of commentsService.state$ | async as comments; let i = index"
+      [nzAuthor]="comment.author"
+      [nzDatetime]="comment.time"
+    >
+      <nz-avatar
+        nz-comment-avatar
+        nzIcon="user"
+        [nzSrc]="comment.avatar"
+      ></nz-avatar>
+      <nz-comment-content>
+        <p>
+         {{comment.content}}
+        </p>
+      </nz-comment-content>
+      <nz-comment-action>
+        <i
+          nz-tooltip
+          nzTitle="Like"
+          nz-icon
+          nzType="like"
+          [theme]="comment.likes > 0 ? 'twotone' : 'outline'"
+          (click)="like(comments, i)"
+        ></i>
+        <span class="count like">{{ comment.likes }}</span>
+      </nz-comment-action>
+    </nz-comment>
+  </div>
 </app-layout>

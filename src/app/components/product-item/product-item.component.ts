@@ -9,4 +9,5 @@ import { Product } from '../../core/services/product.service';
 })
 export class ProductItemComponent {
   @Input() product: Product;
+  @Input() fullSize = false;
 }

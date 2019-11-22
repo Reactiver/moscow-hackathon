@@ -5,11 +5,12 @@ import { ProductService } from './services/product.service';
 import { RussianCurrencyPipe } from './pipes/russian-currency.pipe';
 import { CommentsPipe } from './pipes/comments.pipe';
 import { FirstUpPipe } from './pipes/first-up.pipe';
+import { CommentsService } from './services/comments.service';
 
 @NgModule({
   declarations: [RussianCurrencyPipe, CommentsPipe, FirstUpPipe],
   imports: [CommonModule],
   exports: [RussianCurrencyPipe, CommentsPipe, FirstUpPipe],
-  providers: [CategoryService, ProductService],
+  providers: [CategoryService, ProductService, CommentsService],
 })
 export class CoreModule {}
