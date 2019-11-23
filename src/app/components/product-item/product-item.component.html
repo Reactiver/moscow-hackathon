@@ -1,10 +1,11 @@
-<div class="photo">
+<div class="photo" [ngClass]="{ 'full-size': fullSize }">
   <img src="{{ product.imageUrl }}" alt="{{ product.title }}" />
 </div>
 <div class="content">
-  <h2 class="title">
+  <h2 *ngIf="!fullSize" class="title">
     <a [routerLink]="['product/', product.id]">{{ product.title }}</a>
   </h2>
+  <h2 *ngIf="fullSize">{{ product.title }}</h2>
   <div class="rating">
     <nz-tag
       [nzColor]="product.rating >= 4 ? 'green' : 'orange'"
@@ -14,7 +15,12 @@
     >
       {{ product.rating }}</nz-tag
     >
-    <span class="comments">{{ product.comments | comments }}</span>
+    <span *ngIf="!fullSize" class="comments"
+      ><a [routerLink]="['product/', product.id]" fragment="comments">{{
+        product.comments | comments
+      }}</a></span
+    >
+    <span *ngIf="fullSize">{{product.comments | comments}}</span>
   </div>
   <p class="info">
     {{ product.info }}
@@ -23,6 +29,9 @@
 <div class="about">
   <h2 class="price">{{ product.price | russianCurrency }}</h2>
   <p class="vendor">{{ product.author }}</p>
+  <div class="download">
+    <img src="assets/img/download.svg" alt="Скачать">
+  </div>
 </div>
 
 <!--<nz-skeleton [nzActive]="true"></nz-skeleton>-->

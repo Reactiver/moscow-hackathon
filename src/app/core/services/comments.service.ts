@@ -36,7 +36,7 @@ const comments: Comment[] = [
 
 @Injectable()
 export class CommentsService {
-  private store = new BehaviorSubject<Comment[]>(comments);
+  private store = new BehaviorSubject<Comment[]>([...comments]);
   state$ = this.store.asObservable();
 
   constructor() {}

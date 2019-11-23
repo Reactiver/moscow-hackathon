@@ -16,8 +16,12 @@
     img {
       width: 100%;
       height: auto;
-      max-width: 120px;
+      max-width: 100%;
     }
+  }
+
+  .full-size {
+    width: 300px;
   }
 
   .content {
@@ -34,10 +38,10 @@
       }
     }
 
-    .comments {
+    .comments a {
       color: #999999;
       cursor: pointer;
-      transition: all .2s;
+      transition: all 0.2s;
 
       &:hover {
         color: @primary-color;
@@ -46,7 +50,17 @@
 
     .info {
       margin-top: @padding-sm;
+    }
+  }
 
+  .about {
+    min-width: max-content;
+
+    .download {
+      margin: 30px auto 0;
+      width: 40px;
+      height: auto;
+      cursor: pointer;
     }
   }
 }
