@@ -34,50 +34,5 @@
   </div>
 </div>
 
-<nz-modal
-  [(nzVisible)]="isVisible"
-  [nzFooter]="null"
-  (nzOnCancel)="handleCancel()"
-  (nzOnOk)="handleOk()"
->
-  <ng-payment-card
-    *ngIf="currentPaymentStep === paymentStep.bankCard"
-    cardExpiredTxt="Срок действия карты истек"
-    cardHolderMissingTxt="Требуется имя владельца карты"
-    cardHolderTooLongTxt="Имя владельца карты слишком длинное"
-    ccNumChecksumInvalidTxt="Указанный номер карты недействителен"
-    ccNumContainsLettersTxt="Номер карты может содержать только цифры"
-    ccNumMissingTxt="Требуется номер карты"
-    ccNumTooLongTxt="Номер карты слишком длинный"
-    ccNumTooShortTxt="Номер карты слишком короткий"
-    ccvContainsLettersTxt="Номер CCV может содержать только цифры"
-    ccvMissingTxt="Требуется номер CCV"
-    ccvNumTooLongTxt="Номер CCV слишком длинный"
-    ccvNumTooShortTxt="Номер CCV слишком короткий"
-    expirationMonthMissingTxt="Месяц истечения обязателен"
-    expirationYearMissingTxt="Срок годности обязателен"
-    (formSaved)="processPayment($event)"
-  ></ng-payment-card>
-
-  <div class="modal-wrapper" *ngIf="currentPaymentStep !== paymentStep.bankCard">
-    <nz-spin
-      *ngIf="currentPaymentStep === paymentStep.processing"
-      nzTip="Выполнение транзакции..."
-      nzSize="large"
-    ></nz-spin>
-
-    <nz-result
-      *ngIf="currentPaymentStep === paymentStep.success"
-      nzStatus="success"
-      nzTitle="Покупка прошла успешно!"
-    >
-      <div nz-result-extra>
-        <button nz-button nzType="primary" nzSize="large" nzShape="round">
-          <i nz-icon nzType="download"></i>Скачать
-        </button>
-      </div>
-    </nz-result>
-  </div>
-</nz-modal>
-
+<app-modal-payment [visible]="isVisible" (cancel)="handleCancel()" (ok)="handleOk()"></app-modal-payment>
 <!--<nz-skeleton [nzActive]="true"></nz-skeleton>-->

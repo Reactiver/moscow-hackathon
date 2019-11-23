@@ -6,9 +6,10 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ProductItemComponent } from './product-item/product-item.component';
 import {CoreModule} from "../core/core.module";
 import {NgPaymentCardModule} from "ng-payment-card";
+import { ModalPaymentComponent } from './modal-payment/modal-payment.component';
 
 @NgModule({
-  declarations: [LayoutComponent, ProductItemComponent],
+  declarations: [LayoutComponent, ProductItemComponent, ModalPaymentComponent],
   imports: [CommonModule, RouterModule, NgZorroAntdModule, CoreModule, NgPaymentCardModule],
   exports: [LayoutComponent, ProductItemComponent],
 })
