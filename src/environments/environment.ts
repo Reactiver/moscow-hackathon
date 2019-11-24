@@ -4,6 +4,9 @@
 
 export const environment = {
   production: false,
+  api: {
+    endpoint: 'http://188.166.1.243:8080',
+  },
 };
 
 /*

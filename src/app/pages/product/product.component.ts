@@ -13,6 +13,7 @@ import { CommentsService } from '../../core/services/comments.service';
 export class ProductComponent implements OnInit, OnDestroy {
   product$: Observable<Product>;
   private destroy = new ReplaySubject<void>();
+  myComment = '';
 
   constructor(
     private readonly route: ActivatedRoute,

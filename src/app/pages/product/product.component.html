@@ -7,6 +7,13 @@
     ></app-product-item>
     <div class="comments" id="comments">
       <h2>Все отзывы:</h2>
+      <div class="my-comment">
+        <label>
+          <textarea rows="3" nz-input [(ngModel)]="myComment" placeholder="Оставьте ваш отзыв..."></textarea>
+        </label>
+        <button nz-button nzType="primary">Отправить</button>
+      </div>
+
       <nz-comment
         *ngFor="let comment of commentsService.state$ | async as comments; let i = index"
         [nzAuthor]="comment.author"

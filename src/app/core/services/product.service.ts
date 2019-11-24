@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {filter, map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { RequestService } from './request.service';
 
 export interface Product {
   id: number;
@@ -61,6 +62,8 @@ export class ProductService {
   private products = new BehaviorSubject<Product[]>(mockProduct);
   public products$ = this.products.asObservable();
 
+  constructor(private readonly request: RequestService) {}
+
   setProducts(products: Product[]) {
     this.products.next(products);
   }
@@ -72,5 +75,9 @@ export class ProductService {
         return product;
       })
     );
+  }
+
+  getItems(): Observable<any> {
+    return this.request.get('items');
   }
 }

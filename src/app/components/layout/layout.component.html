@@ -27,7 +27,22 @@
         <h3 class="nav-item"><a>Тендер</a></h3>
         <h3 class="nav-item"><a>Ярмарка продуктов</a></h3>
       </nav>
-      <nz-avatar class="avatar" nzSize="large" nzIcon="user"></nz-avatar>
+      <nz-avatar
+        nz-dropdown
+        [nzDropdownMenu]="profile"
+        class="avatar"
+        nzSize="large"
+        nzIcon="user"
+      ></nz-avatar>
+      <nz-dropdown-menu #profile="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          <li nz-menu-item><i nz-icon nzType="shopping" nzTheme="outline"></i>Мои заказы</li>
+          <li nz-menu-item><i nz-icon nzType="heart" nzTheme="outline"></i>Мои избранные</li>
+          <li nz-menu-divider></li>
+          <li nz-menu-item><i nz-icon nzType="appstore" nzTheme="outline"></i>Личные данные</li>
+          <li nz-menu-item><i nz-icon nzType="setting" nzTheme="outline"></i>Настройки</li>
+        </ul>
+      </nz-dropdown-menu>
     </div>
   </header>
   <nz-content>

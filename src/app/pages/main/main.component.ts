@@ -41,6 +41,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.route.paramMap.pipe(takeUntil(this.destroy)).subscribe(params => {
       this.category = params.get('category');
     });
+    // this.productService.getItems().subscribe(console.log);
   }
 
   ngOnDestroy() {
