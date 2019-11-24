@@ -3,6 +3,7 @@
   [nzFooter]="null"
   (nzOnCancel)="handleCancel()"
   (nzOnOk)="handleOk()"
+  nzWidth="700px"
 >
   <ng-payment-card
     *ngIf="currentPaymentStep === paymentStep.bankCard"
