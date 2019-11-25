@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../core/services/category.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-layout',
@@ -7,6 +8,15 @@ import { CategoryService } from '../../core/services/category.service';
   styleUrls: ['./layout.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit {
+  categories$: Observable<string[]>;
   constructor(public categoryService: CategoryService) {}
+
+  ngOnInit() {
+    this.getCategories();
+  }
+
+  private getCategories() {
+    this.categories$ = this.categoryService.getCategories();
+  }
 }

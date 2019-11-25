@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FirstUpPipe implements PipeTransform {
   transform(value: string, ...args: any[]): string {
-    return value && value.replace(/^./, value[0].toUpperCase());
+    return value && value.toLowerCase().replace(/^./, value[0].toUpperCase());
   }
 }

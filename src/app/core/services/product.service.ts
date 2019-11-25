@@ -1,83 +1,35 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RequestService } from './request.service';
+import { Comment } from './comments.service';
 
 export interface Product {
-  id: number;
-  title: string;
-  info: string;
-  rating: number;
-  comments: number;
-  imageUrl: string;
+  category: string;
+  comments: Comment[];
+  description: string;
+  file: any;
+  itemId: string;
+  name: string;
+  ownerId: string;
   price: number;
-  author: string;
+  rating: number;
 }
-
-const mockProduct = [
-  {
-    id: 1,
-    title: 'Instagram',
-    info:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
-      'Accusantium consequatur dolorum esse eveniet ex, expedita harum ' +
-      'impedit inventore iure laborum porro quae quam qui quibusdam quis ' +
-      'reprehenderit sed tempora tempore!',
-    rating: 4.5,
-    comments: 423,
-    imageUrl: 'https://placehold.it/120x120',
-    price: 51342,
-    author: 'Sonic Studio',
-  },
-  {
-    id: 2,
-    title: 'Антивирус',
-    info:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
-      'Accusantium consequatur dolorum esse eveniet ex, expedita harum ' +
-      'impedit inventore iure laborum porro quae quam qui quibusdam quis ' +
-      'reprehenderit sed tempora tempore!',
-    rating: 4.8,
-    comments: 11,
-    imageUrl: 'https://placehold.it/120x120',
-    price: 1234,
-    author: 'Reactive LTD',
-  },
-  {
-    id: 3,
-    title: 'Админка',
-    info:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
-      'Accusantium consequatur dolorum esse eveniet ex, expedita harum ',
-    rating: 3.2,
-    comments: 7,
-    imageUrl: 'https://placehold.it/120x120',
-    price: 3228,
-    author: 'Test Corp',
-  },
-];
 
 @Injectable()
 export class ProductService {
-  private products = new BehaviorSubject<Product[]>(mockProduct);
-  public products$ = this.products.asObservable();
-
   constructor(private readonly request: RequestService) {}
 
-  setProducts(products: Product[]) {
-    this.products.next(products);
-  }
-
-  getProductById(id: number): Observable<Product> {
-    return this.products$.pipe(
+  getProductById(id: string): Observable<Product> {
+    return this.getProducts().pipe(
       map(products => {
-        const [product] = products.filter(item => item.id === id);
+        const [product] = products.filter(item => item.itemId === id);
         return product;
       })
     );
   }
 
-  getItems(): Observable<any> {
-    return this.request.get('items');
+  getProducts(): Observable<Product[]> {
+    return this.request.get<Product[]>('items').pipe();
   }
 }

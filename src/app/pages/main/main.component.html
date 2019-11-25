@@ -30,7 +30,7 @@
         </span>
       </p>
 
-      <ng-container *ngFor="let product of productService.products$ | async">
+      <ng-container *ngFor="let product of products$ | async">
         <app-product-item [product]="product"></app-product-item>
       </ng-container>
 

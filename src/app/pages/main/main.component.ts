@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NzMarks } from 'ng-zorro-antd';
 import { CategoryService } from '../../core/services/category.service';
-import { ProductService } from '../../core/services/product.service';
+import {Product, ProductService} from '../../core/services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { ReplaySubject } from 'rxjs';
+import {Observable, ReplaySubject} from 'rxjs';
+import { UserService } from '../../core/services/user.service';
 
 type SortType = 'price' | 'rate' | 'feedback' | null;
 
@@ -31,6 +32,7 @@ export class MainComponent implements OnInit, OnDestroy {
   sortType: SortType = null;
   priceType: 'up' | 'down' = 'up';
   private destroy = new ReplaySubject<void>();
+  products$: Observable<Product[]>;
 
   constructor(
     public readonly productService: ProductService,
@@ -41,7 +43,8 @@ export class MainComponent implements OnInit, OnDestroy {
     this.route.paramMap.pipe(takeUntil(this.destroy)).subscribe(params => {
       this.category = params.get('category');
     });
-    // this.productService.getItems().subscribe(console.log);
+
+    this.getProducts();
   }
 
   ngOnDestroy() {
@@ -55,5 +58,9 @@ export class MainComponent implements OnInit, OnDestroy {
     if (this.sortType === 'price') {
       this.priceType = this.priceType === 'up' ? 'down' : 'up';
     }
+  }
+
+  private getProducts() {
+    this.products$ = this.productService.getProducts();
   }
 }

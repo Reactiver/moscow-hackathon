@@ -5,6 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class RussianCurrencyPipe implements PipeTransform {
   transform(value: number, ...args: any[]): string {
-    return Number(value).toLocaleString('ru') + ' ₽';
+    const penny = 100;
+    return Number(value / penny).toLocaleString('ru') + ' ₽';
   }
 }

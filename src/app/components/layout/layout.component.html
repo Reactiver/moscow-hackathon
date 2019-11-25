@@ -18,7 +18,7 @@
           </a>
           <nz-dropdown-menu #menu="nzDropdownMenu">
             <ul nz-menu nzSelectable>
-              <li *ngFor="let category of categoryService.categories" nz-menu-item>
+              <li *ngFor="let category of categories$ | async" nz-menu-item>
                 <a [routerLink]="['/category/', category]">{{ category | firstUp }}</a>
               </li>
             </ul>

@@ -1,7 +1,8 @@
 <app-layout>
   <div class="container">
     <app-product-item
-      [product]="product$ | async"
+      *ngIf="product$ | async as product"
+      [product]="product"
       [fullSize]="true"
       [style.border]="'none'"
     ></app-product-item>
@@ -15,11 +16,11 @@
       </div>
 
       <nz-comment
-        *ngFor="let comment of commentsService.state$ | async as comments; let i = index"
-        [nzAuthor]="comment.author"
-        [nzDatetime]="comment.time"
+        *ngFor="let comment of comments$ | async as comments; let i = index"
+        [nzAuthor]="comment.name"
+        [nzDatetime]="comment.date | date : 'dd LLL yyyy'"
       >
-        <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="comment.avatar"></nz-avatar>
+<!--        <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="comment.avatar"></nz-avatar>-->
         <nz-comment-content>
           <p>
             {{ comment.content }}
