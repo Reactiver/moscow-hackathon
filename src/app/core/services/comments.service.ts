@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { RequestService } from './request.service';
+import { ProductService } from './product.service';
+import { UserService } from './user.service';
+import {concatMap, mergeMap, mergeMapTo, switchMap, switchMapTo, withLatestFrom} from 'rxjs/operators';
 
 export interface Comment {
   authorId: string;
@@ -13,14 +17,19 @@ export interface Comment {
   rating: number;
 }
 
+export interface NormalizedComment extends Comment {
+  authorName;
+}
+
 @Injectable()
 export class CommentsService {
-  private store = new BehaviorSubject<Comment[]>([]);
-  state$ = this.store.asObservable();
+  constructor(
+    private readonly request: RequestService,
+    private readonly product: ProductService,
+    private readonly user: UserService
+  ) {}
 
-  constructor() {}
-
-  addComment(comment: Comment) {
-    this.store.next([...this.store.value, comment]);
+  getCommentByCommentId(id: string): Observable<Comment> {
+    return this.request.get<Comment>(`comments/${id}`);
   }
 }

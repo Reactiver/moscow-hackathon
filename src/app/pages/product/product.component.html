@@ -17,7 +17,7 @@
 
       <nz-comment
         *ngFor="let comment of comments$ | async as comments; let i = index"
-        [nzAuthor]="comment.name"
+        [nzAuthor]="comment.authorName"
         [nzDatetime]="comment.date | date : 'dd LLL yyyy'"
       >
 <!--        <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="comment.avatar"></nz-avatar>-->

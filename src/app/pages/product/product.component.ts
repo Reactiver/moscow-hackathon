@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { pluck, takeUntil } from 'rxjs/operators';
-import { Observable, ReplaySubject } from 'rxjs';
+import { concatMap, map, pluck, switchMap, takeUntil, toArray } from 'rxjs/operators';
+import { combineLatest, Observable, ReplaySubject } from 'rxjs';
 import { Product, ProductService } from '../../core/services/product.service';
-import { CommentsService, Comment } from '../../core/services/comments.service';
+import { CommentsService, NormalizedComment, Comment } from '../../core/services/comments.service';
+import { UserService } from '../../core/services/user.service';
 
 @Component({
   selector: 'app-product',
@@ -12,14 +13,15 @@ import { CommentsService, Comment } from '../../core/services/comments.service';
 })
 export class ProductComponent implements OnInit, OnDestroy {
   product$: Observable<Product>;
-  comments$: Observable<Comment[]>;
+  comments$: Observable<NormalizedComment[]>;
   private destroy = new ReplaySubject<void>();
   myComment = '';
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly productService: ProductService,
-    public commentsService: CommentsService
+    public commentsService: CommentsService,
+    public userService: UserService
   ) {}
 
   ngOnInit() {
@@ -27,9 +29,30 @@ export class ProductComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy))
       .subscribe(params => this.getProduct(params.get('id')));
   }
+
   private getProduct(id: string) {
     this.product$ = this.productService.getProductById(id);
-    this.comments$ = this.product$.pipe(pluck('comments'));
+    this.getNormalizedComments();
+  }
+
+  private getNormalizedComments() {
+    const comments$ = this.product$.pipe(pluck('comments'));
+
+    this.comments$ = combineLatest(
+      comments$,
+      comments$.pipe(
+        switchMap(comments => comments),
+        concatMap(comment => this.userService.getUserName(comment.authorId)),
+        toArray()
+      )
+    ).pipe(
+      map(([comments, authors]) => {
+        return comments.map((item: Comment, index) => {
+          return { ...item, authorName: authors[index] };
+        });
+      }),
+      takeUntil(this.destroy)
+    );
   }
 
   ngOnDestroy(): void {

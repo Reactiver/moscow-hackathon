@@ -30,6 +30,6 @@ export class ProductService {
   }
 
   getProducts(): Observable<Product[]> {
-    return this.request.get<Product[]>('items').pipe();
+    return this.request.get<Product[]>('items');
   }
 }

@@ -1,11 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NzMarks } from 'ng-zorro-antd';
-import { CategoryService } from '../../core/services/category.service';
-import {Product, ProductService} from '../../core/services/product.service';
+import { Product, ProductService } from '../../core/services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import {Observable, ReplaySubject} from 'rxjs';
-import { UserService } from '../../core/services/user.service';
+import { Observable, ReplaySubject } from 'rxjs';
 
 type SortType = 'price' | 'rate' | 'feedback' | null;
 
