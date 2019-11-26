@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build:dev": "ng build",
+    "build:prod": "ng build --prod",
     "build:git": "ng build --prod --base-href https://Reactiver.github.io/moscow-hackathon/",
     "public": "ngh --dir=dist/moscow-hackathon",
     "test": "ng test",
