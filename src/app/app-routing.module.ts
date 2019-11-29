@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/category/popular',
+    redirectTo: '/category/SERVICE',
     pathMatch: 'full',
   },
   {

@@ -33,11 +33,10 @@
       <ng-container *ngFor="let product of products$ | async">
         <app-product-item [product]="product"></app-product-item>
       </ng-container>
-
     </div>
     <div class="settings">
       <h3 class="settings-type">Рейтинг</h3>
-      <nz-radio-group [(ngModel)]="radioValue" class="radio-group">
+      <nz-radio-group [(ngModel)]="minRating" (ngModelChange)="updateRating()" class="radio-group">
         <label nz-radio nzValue="2">От <nz-rate [ngModel]="2" nzDisabled></nz-rate></label>
         <label nz-radio nzValue="3">От <nz-rate [ngModel]="3" nzDisabled></nz-rate></label>
         <label nz-radio nzValue="4">От <nz-rate [ngModel]="4" nzDisabled></nz-rate></label>

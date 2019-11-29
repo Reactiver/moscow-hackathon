@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NzMarks } from 'ng-zorro-antd';
-import { Product, ProductService } from '../../core/services/product.service';
+import { OrderByPrice, Product, ProductService } from '../../core/services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Observable, ReplaySubject } from 'rxjs';
+import { LoaderService } from '../../core/services/loader.service';
 
 type SortType = 'price' | 'rate' | 'feedback' | null;
 
@@ -14,7 +15,7 @@ type SortType = 'price' | 'rate' | 'feedback' | null;
 })
 export class MainComponent implements OnInit, OnDestroy {
   category: string;
-  radioValue: any;
+  minRating = 0;
   price = [100, 1000];
   params: any;
   marks: NzMarks = {
@@ -33,6 +34,7 @@ export class MainComponent implements OnInit, OnDestroy {
   products$: Observable<Product[]>;
 
   constructor(
+    private loaderService: LoaderService,
     public readonly productService: ProductService,
     private readonly route: ActivatedRoute
   ) {}
@@ -40,9 +42,9 @@ export class MainComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.paramMap.pipe(takeUntil(this.destroy)).subscribe(params => {
       this.category = params.get('category');
+      this.getProducts(this.category);
+      console.log('get category');
     });
-
-    this.getProducts();
   }
 
   ngOnDestroy() {
@@ -55,10 +57,16 @@ export class MainComponent implements OnInit, OnDestroy {
 
     if (this.sortType === 'price') {
       this.priceType = this.priceType === 'up' ? 'down' : 'up';
+      const orderByPrice: OrderByPrice = this.priceType === 'up' ? 'ASCENDING' : 'DESCENDING';
+      this.getProducts(this.category, orderByPrice, this.minRating);
     }
   }
 
-  private getProducts() {
-    this.products$ = this.productService.getProducts();
+  private getProducts(category?: string, orderByPrice?: OrderByPrice, minRating?: number) {
+    this.products$ = this.productService.updateProducts(category, orderByPrice, minRating);
+  }
+
+  updateRating() {
+    console.log(this.minRating);
   }
 }

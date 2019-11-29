@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { RequestService } from './request.service';
 import { Comment } from './comments.service';
 
@@ -16,12 +16,38 @@ export interface Product {
   rating: number;
 }
 
+export type OrderByPrice = 'ASCENDING' | 'DESCENDING';
+
+interface ProductState {
+  products: Product[];
+  productName: string;
+  minRating: number;
+}
+
+const state: ProductState = {
+  products: [],
+  productName: '',
+  minRating: 0,
+};
+
 @Injectable()
 export class ProductService {
+  // private productStore = new BehaviorSubject<ProductState>(state);
+  // private productState$ = this.productStore.asObservable();
+  //
+  // products$ = this.productState$.pipe(
+  //   map(productState => productState.products),
+  //   distinctUntilChanged()
+  // );
+  // productName$ = this.productState$.pipe(
+  //   map(productState => productState.productName),
+  //   distinctUntilChanged()
+  // );
+
   constructor(private readonly request: RequestService) {}
 
   getProductById(id: string): Observable<Product> {
-    return this.getProducts().pipe(
+    return this.updateProducts().pipe(
       map(products => {
         const [product] = products.filter(item => item.itemId === id);
         return product;
@@ -29,7 +55,24 @@ export class ProductService {
     );
   }
 
-  getProducts(): Observable<Product[]> {
-    return this.request.get<Product[]>('items');
+  updateProducts(
+    category?: string,
+    orderByPrice?: OrderByPrice,
+    minRating?: number
+  ): Observable<Product[]> {
+    let queryParams = '';
+    queryParams += !!category ? `?category=${category}` : '';
+    queryParams += !!orderByPrice ? `&orderByPrice=${orderByPrice}` : '';
+    queryParams += !!minRating ? `&minRating=${minRating}` : '';
+
+    return this.request
+      .get<Product[]>(`items${queryParams}`)
+      .pipe
+      // tap(items => this.updateState(items))
+      ();
   }
+
+  // private updateState(state: Product[]) {
+  //   this.products.next(state);
+  // }
 }

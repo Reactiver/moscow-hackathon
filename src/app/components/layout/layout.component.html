@@ -3,11 +3,16 @@
     <div class="logo-and-search">
       <h2 class="logo"><a routerLink="/">Successful Market</a></h2>
       <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
-        <input type="text" nz-input placeholder="Программа, сервис, it-решение" />
+        <input [formControl]="productName" [nzAutocomplete]="auto" type="text" nz-input placeholder="Программа, сервис, it-решение" />
       </nz-input-group>
       <ng-template #suffixButton>
         <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
       </ng-template>
+      <nz-autocomplete nzBackfill #auto>
+        <nz-auto-option *ngFor="let option of items$ | async" [nzValue]="option">
+          {{ option }}
+        </nz-auto-option>
+      </nz-autocomplete>
     </div>
     <div class="navigation">
       <nav class="nav">
