@@ -1,27 +1,38 @@
-# MoscowHackathon
+# Marketplace
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
+Наша задача - маркетплей ит-решений.
 
-## Development server
+Продакшен версия доступна по [ссылке.](https://shaldnikita.ru/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Запустить локально можно командой <code>npm run start</code>
 
-## Code scaffolding
+[Видео](https://www.youtube.com/watch?v=esb9fBiRd5E&feature=youtu.be)
+ 
+## О стеке
+Для решения был выбран следующий стек:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Frontend - Angular 8, Дизайн система - AntDesign
 
-## Build
+BackEnd - Java, Scala, PostgresQL
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Структура проекта
+Весь код фронтенда находится в данном репозитории
 
-## Running end-to-end tests
+Код бекенда по этой [ссылке.](http://git3.urbantech.pro/igor.turyanitsa/marketplace-back/blob/master/README.md)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+src/app/components - основные переиспользуемые компоненты в проекте
 
-## Further help
+src/app/core - пайпы, сервисы и интерсопторы для проекта
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+src/api/core/services - вся логика фронтенда по работе с данными
+
+src/api/cour/pipes - пайпы для форматирования чисел и строк для html
+
+src/app/pages - страницы маркетплейса
+
+src/assests - картинки
+
+src/environments - настройка ApiUrl для соединения с бекендом
+

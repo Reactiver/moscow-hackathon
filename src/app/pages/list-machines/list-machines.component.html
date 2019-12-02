@@ -1,0 +1,20 @@
+<app-layout>
+  <div class="container">
+    <h1>Активные виртуальные машины</h1>
+    <div class="cards">
+      <nz-card
+        *ngFor="let machine of machines$ | async"
+        class="card"
+        [nzTitle]="machine.name"
+      >
+        <p>CPU: {{ machine.configuration?.cpu }}</p>
+        <p>RAM: {{ machine.configuration?.ram }}</p>
+        <p>SSD: {{ machine.configuration?.ssd }}</p>
+        <p>HDD: {{ machine.configuration?.hdd }}</p>
+        <p>Backups: {{ machine.backups }}</p>
+        <p>IPv6: {{ machine.ipv6 }}</p>
+        <p>Monitoring: {{ machine.monitoring }}</p>
+      </nz-card>
+    </div>
+  </div>
+</app-layout>

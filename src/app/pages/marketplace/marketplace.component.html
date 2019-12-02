@@ -1,0 +1,23 @@
+<app-layout>
+  <div class="container">
+    <h1>Найдите свое решение</h1>
+    <nz-tabset>
+      <nz-tab *ngFor="let tab of tabs" [nzTitle]="tab">
+        <h2>Выбор редакции</h2>
+
+        <div class="marketplace-items">
+          <ng-container *ngFor="let item of cloudItems">
+            <nz-card class="item" nzHoverable [nzCover]="coverTemplate" (click)="openItemPage(item.itemId)">
+              <nz-card-meta [nzTitle]="item.title" [nzDescription]="item.description"></nz-card-meta>
+            </nz-card>
+            <ng-template #coverTemplate>
+              <div class="image-container">
+                <img [alt]="item.name" [src]="item.imageUrl" />
+              </div>
+            </ng-template>
+          </ng-container>
+        </div>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</app-layout>

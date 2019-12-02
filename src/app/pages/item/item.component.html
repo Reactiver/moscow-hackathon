@@ -1,0 +1,95 @@
+<app-layout>
+  <div class="container">
+    <div class="head-info">
+      <div class="left-part">
+        <div class="image-container">
+          <img [src]="(item$ | async).imageUrl" [alt]="(item$ | async).title" />
+        </div>
+        <div class="info">
+          <h2 class="title">{{ (item$ | async).title }}</h2>
+          <h3 class="by-us">by <img src="assets/img/sbercloud.svg" alt="SberCloud" /></h3>
+          <h3 class="description">{{ (item$ | async).description }}</h3>
+        </div>
+      </div>
+      <div class="right-part">
+        <button nz-button nzType="primary" (click)="createMachine()">
+          Настроить виртуальную машину
+        </button>
+      </div>
+    </div>
+    <hr />
+
+    <div class="content">
+      <h2>Описание</h2>
+      <p class="content-description">
+        Docker контейнеры объединяют программное обеспечение и его зависимости в единое целое для
+                 разработки программного обеспечения, которая включает в себя все, что нужно для
+        запуска: код, время выполнения, системные инструменты и библиотеки. Это гарантирует, что
+        ваше приложение всегда будет работать одинаково и просто на любых компьютерах.
+      </p>
+
+      <h2>Программное обеспечение включает</h2>
+
+      <nz-table
+        #basicTable
+        [nzData]="listOfData"
+        [nzFrontPagination]="false"
+        [nzShowPagination]="false"
+      >
+        <thead>
+          <tr>
+            <th>Пакет</th>
+            <th>Версия</th>
+            <th>Лицензия</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>
+              <strong>{{ data.package }}</strong>
+            </td>
+            <td>
+              <a href="#">{{ data.version }}</a>
+            </td>
+            <td>
+              <a href="#">{{ data.license }}</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+
+      <h2>Начало работы после развертывания</h2>
+      <p>
+        Дополнение к установке пакета в один клик также:
+      </p>
+
+      <ul>
+        <li>
+          Позволяет брандмауэру UFW разрешать только SSH соединение (порт 22, скорость ограничена) и
+          2375/2376 для незашифрованной/зашифрованной связи с демоном Docker, соответственно.
+        </li>
+        <li>Конфигурация Docker в соответствии с официальными рекомендациями Docker.</li>
+        <li>
+          Настраивает Docker Compose в соответствии с официальными рекомендациями Docker Compose.
+                     Капля в один клик создана, вы можете войти в нее как root. Не забудьте заменить
+          ваш            IP-адрес капл
+        </li>
+      </ul>
+
+      <pre><code [highlight]="sshCode"></code></pre>
+
+      <h2>Создание API</h2>
+
+      <p>
+        В дополнение к созданию машины из Docker в 1 клик через панель управления,
+                 также можно использовать API SberCloud. Например, для создания Docker Droplet 4 ГБ,
+        можно использовать следующую curl команду. Вам нужно либо сохранить доступ к API
+                 токен переменной окружения или подставьте его в команду ниже.
+      </p>
+      <pre>
+        <code [highlight]="code">
+      </code>
+      </pre>
+    </div>
+  </div>
+</app-layout>

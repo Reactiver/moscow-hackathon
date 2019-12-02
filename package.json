@@ -1,17 +1,16 @@
 {
-  "name": "moscow-hackathon",
-  "version": "0.0.0",
+  "name": "marketplace",
+  "version": "0.1.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build:dev": "ng build",
     "build:prod": "ng build --prod",
-    "build:git": "ng build --prod --base-href https://Reactiver.github.io/moscow-hackathon/",
-    "public": "ngh --dir=dist/moscow-hackathon",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "format": "prettier --config ./.prettierrc --write \"src/**/*.{ts,js,html,css,scss,less,json}\""
+    "format": "prettier --config ./.prettierrc --write \"src/**/*.{ts,js,html,css,scss,less,json}\"",
+    "push": "docker-push.sh"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +25,7 @@
     "core-js": "^2.5.4",
     "ng-payment-card": "0.0.8",
     "ng-zorro-antd": "8.4.0",
+    "ngx-highlightjs": "^4.0.0",
     "rxjs": "~6.5.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

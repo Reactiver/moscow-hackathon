@@ -1,0 +1,23 @@
+<div class="card-wrapper" [ngClass]="{ 'card-wrapper--active': active }">
+  <div class="price" [ngClass]="{ 'price--active': active }">
+    <ng-container [ngSwitch]="paymentType">
+      <p *ngSwitchCase="'year'">
+        {{ getYearPrice(pricePerMonth) | russianCurrency }}<span>/год</span>
+      </p>
+      <p *ngSwitchCase="'hour'">
+        {{ getHourPrice(pricePerMonth) | russianCurrency }}<span>/час</span>
+      </p>
+      <p *ngSwitchCase="'minute'">
+        {{ getHourMinute(pricePerMonth) | russianCurrency }}<span>/мин</span>
+      </p>
+      <p *ngSwitchDefault>{{ pricePerMonth | russianCurrency }}<span>/мес</span></p>
+    </ng-container>
+  </div>
+  <div class="info">
+    <p>
+      {{ ram }} GB <span>/ {{ cpu }} CPU</span>
+    </p>
+    <p *ngIf="ssd">{{ ssd }} GB <span>SSD</span></p>
+    <p *ngIf="hdd">{{ hdd }} TB <span>HDD</span></p>
+  </div>
+</div>

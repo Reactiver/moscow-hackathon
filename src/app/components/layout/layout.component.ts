@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { CategoryService } from '../../core/services/category.service';
+import { Category, CategoryService } from '../../core/services/category.service';
 import { Observable, of } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { ProductService } from '../../core/services/product.service';
 
 @Component({
   selector: 'app-layout',
@@ -12,14 +11,13 @@ import { ProductService } from '../../core/services/product.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutComponent implements OnInit {
-  categories$: Observable<string[]>;
+  categories$: Observable<Category[]> = this.categoryService.getCategories();
   items$: Observable<string[]>;
   productName = new FormControl('');
 
-  constructor(public categoryService: CategoryService, private productService: ProductService) {}
+  constructor(public categoryService: CategoryService) {}
 
   ngOnInit() {
-    this.getCategories();
     this.getItems();
   }
 
@@ -29,9 +27,5 @@ export class LayoutComponent implements OnInit {
       distinctUntilChanged(),
       switchMap(value => of([value, value + value]))
     );
-  }
-
-  private getCategories() {
-    this.categories$ = this.categoryService.getCategories();
   }
 }

@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import ru from '@angular/common/locales/ru';
 import { ComponentsModule } from './components/components.module';
-import {PagesModule} from "./pages/pages.module";
+import { PagesModule } from './pages/pages.module';
 
 registerLocaleData(ru);
 

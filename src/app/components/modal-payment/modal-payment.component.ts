@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ICardDetails } from 'ng-payment-card/lib/domain/i-card-details';
 
 enum PaymentStep {

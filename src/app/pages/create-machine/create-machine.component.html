@@ -1,0 +1,178 @@
+<app-layout>
+  <div class="container">
+    <h1>Конфигурация виртуальной машины</h1>
+    <h2>Выберите план</h2>
+    <nz-radio-group
+      [(ngModel)]="type"
+      (ngModelChange)="createService.updateType(type)"
+      [nzSize]="'large'"
+      [nzButtonStyle]="'solid'"
+      class="button-type"
+    >
+      <label nz-radio-button nzValue="standard">Стандартный</label>
+      <label nz-radio-button nzValue="cpu-perform">Процессороемкий</label>
+      <label nz-radio-button nzValue="ram-perform">GBx2</label>
+    </nz-radio-group>
+
+    <ng-container [ngSwitch]="type">
+      <p *ngSwitchCase="'standard'">
+        Стандартные виртуальные машины с сочетанием памяти и вычислительных ресурсов. Лучше всего
+        подходит для небольших проектов, которые могут обрабатывать различные уровни
+        производительности процессора, таких как блоги, веб-приложения и среды разработки /
+        тестирования.
+      </p>
+      <p *ngSwitchCase="'cpu-perform'">
+        Оптимизированные для вычислений виртуальные машины с выделенными гиперпотоками от лучших в
+        своем классе процессоров Intel. Лучше всего подходит для приложений с интенсивным
+        использованием процессора, таких как CI/CD, кодирование и транскодирование видео, машинное
+        обучение, показ рекламы, пакетная обработка и активные интерфейсные веб-серверы и серверы
+        приложений.
+      </p>
+      <p *ngSwitchCase="'ram-perform'">
+        Виртуальные машины с большим объемом памяти и 8 ГБ ОЗУ на ЦП и выделенные гиперпотоки от
+        лучших в своем классе процессоров Intel. Идеально подходит для приложений, интенсивно
+        использующих ОЗУ, таких как высокопроизводительные базы данных, кэш-память в масштабах сети
+        и обработка больших данных в реальном времени.
+      </p>
+    </ng-container>
+
+    <div class="plans">
+      <ng-container *ngFor="let plan of plans$ | async; let i = index">
+        <app-card
+          [pricePerMonth]="plan.pricePerMonth"
+          [cpu]="plan.cpu"
+          [ram]="plan.ram"
+          [ssd]="plan.ssd"
+          [hdd]="plan.hdd"
+          [paymentType]="paymentType"
+          [active]="i === activePlan"
+          (click)="activePlan = i"
+        >
+        </app-card>
+      </ng-container>
+    </div>
+
+    <h2>Тариф</h2>
+    <h3>Выберите удобную для себя систему платежа</h3>
+    <nz-radio-group
+      [(ngModel)]="paymentType"
+      (ngModelChange)="createService.updatePaymentType(paymentType)"
+      [nzSize]="'large'"
+      [nzButtonStyle]="'solid'"
+      class="button-type"
+    >
+      <label nz-radio-button nzValue="month">Ежемесячный</label>
+      <label nz-radio-button nzValue="year">Ежегодный</label>
+      <label nz-radio-button nzValue="hour">Почасовой</label>
+      <label nz-radio-button nzValue="minute">Поминутный</label>
+      <label nz-radio-button nzValue="prepay">Предоплата</label>
+      <label nz-radio-button nzValue="postpay">Постоплата</label>
+    </nz-radio-group>
+
+    <h2>
+      Выберите дополнительные опции
+      <span
+        nz-tooltip
+        nzTooltipTitle="Опции - это дополнения, которые можно легко настроить на этой странице."
+        ><i nz-icon nzType="thunderbolt" nzTheme="fill"></i
+      ></span>
+    </h2>
+    <h3 class="option">
+      <nz-switch [(ngModel)]="ipv6"></nz-switch>
+      <span
+        nz-tooltip
+        nzTooltipPlacement="right"
+        nzTooltipTitle="Включает современную версию интернет-протокола"
+        >IPv6</span
+      >
+    </h3>
+    <h3 class="option">
+      <nz-switch [(ngModel)]="monitoring"></nz-switch>
+      <span
+        nz-tooltip
+        nzTooltipPlacement="right"
+        nzTooltipTitle="Позволяет собирать дополнительные метрики, мониторинг и уведомления"
+        >Мониторинг</span
+      >
+    </h3>
+
+    <h2>
+      Аутентификация
+      <span
+        nz-tooltip
+        nzTooltipTitle="Для виртуальных машин, использующих ключи SSH, аутентификация по паролю отключена по умолчанию. Это делает их защищенными от brute-force атак."
+        ><i nz-icon nzType="thunderbolt" nzTheme="fill"></i
+      ></span>
+    </h2>
+
+    <nz-radio-group
+      [(ngModel)]="authentication"
+      [nzSize]="'large'"
+      [nzButtonStyle]="'solid'"
+      class="button-type"
+    >
+      <label nz-radio-button nzValue="ssh">SSH</label>
+      <label nz-radio-button nzValue="password">По одноразовому паролю</label>
+    </nz-radio-group>
+
+    <h2>Завершить и создать</h2>
+
+    <form nz-form [formGroup]="machinesForm" (ngSubmit)="create()">
+      <nz-form-item *ngFor="let control of listOfControl; let i = index">
+        <nz-form-label [nzXs]="24" [nzSm]="4" *ngIf="i == 0" [nzFor]="control.controlInstance"
+          >Машины
+        </nz-form-label>
+        <nz-form-control
+          [nzXs]="24"
+          [nzSm]="20"
+          [nzOffset]="i == 0 ? 0 : 4"
+          nzErrorTip="Пожалуйста, введите имя виртуальной машины или удалите поле."
+        >
+          <input
+            class="passenger-input"
+            nz-input
+            placeholder="placeholder"
+            [attr.id]="control.id"
+            [formControlName]="control.controlInstance"
+          />
+          <i
+            nz-icon
+            nzType="minus-circle-o"
+            class="dynamic-delete-button"
+            (click)="removeField(control, $event)"
+          ></i>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 20, offset: 4 }">
+          <button nz-button nzType="dashed" class="add-button" (click)="addField($event)">
+            <i nz-icon nzType="plus"></i>
+            Добавить виртуальную машину
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+
+    <h2>Добавление бэкапов</h2>
+    <h3>
+      Система будет создавать бэкап атоматически раз в неделю. Дополнительно настраивать ничего не
+      потребуется.
+    </h3>
+    <h3 class="option">
+      <nz-switch
+        [(ngModel)]="backups"
+        (ngModelChange)="createService.updateBackups(backups)"
+      ></nz-switch>
+      <span
+        nz-tooltip
+        nzTooltipPlacement="right"
+        nzTooltipTitle="Система будет создавать бэкап атоматически раз в неделю."
+        >Включить бэкапы <nz-tag [nzColor]="'#87d068'">Рекомендовано</nz-tag>
+      </span>
+    </h3>
+
+    <button class="create" (click)="create()" nz-button nzType="primary" nzSize="large">
+      Создать
+    </button>
+  </div>
+</app-layout>

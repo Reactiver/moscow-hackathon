@@ -1,34 +1,33 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainComponent } from './pages/main/main.component';
-import { TestComponent } from './pages/test/test.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { AuthComponent } from './pages/auth/auth.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { ProductComponent } from './pages/product/product.component';
+import { MarketplaceComponent } from './pages/marketplace/marketplace.component';
+import { ItemComponent } from './pages/item/item.component';
+import { CreateMachineComponent } from './pages/create-machine/create-machine.component';
+import { ListMachinesComponent } from './pages/list-machines/list-machines.component';
 
 const routes: Routes = [
   {
-    path: 'category/:category',
-    component: MainComponent,
+    path: '',
+    component: MarketplaceComponent,
   },
   {
-    path: 'category/:category/product/:id',
-    component: ProductComponent,
+    path: 'item/:itemId',
+    component: ItemComponent,
+  },
+  {
+    path: 'create/:itemId',
+    component: CreateMachineComponent,
+  },
+  {
+    path: 'machines',
+    component: ListMachinesComponent,
   },
   {
     path: 'auth',
     component: AuthComponent,
-  },
-  {
-    path: 'test',
-    component: TestComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: '',
-    redirectTo: '/category/SERVICE',
-    pathMatch: 'full',
   },
   {
     path: '**',

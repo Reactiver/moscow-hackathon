@@ -1,9 +1,24 @@
 <nz-layout>
   <header>
     <div class="logo-and-search">
-      <h2 class="logo"><a routerLink="/">Successful Market</a></h2>
+      <h2 class="logo">
+        <a routerLink="/">
+          <img
+            class="logo-img"
+            src="assets/img/cloud.jpg"
+            alt="SuccessfulRush Market"
+          />
+          Successful Rush Market</a
+        >
+      </h2>
       <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
-        <input [formControl]="productName" [nzAutocomplete]="auto" type="text" nz-input placeholder="Программа, сервис, it-решение" />
+        <input
+          [formControl]="productName"
+          [nzAutocomplete]="auto"
+          type="text"
+          nz-input
+          placeholder="Виртуальная машина, SaaS, IaaS ..."
+        />
       </nz-input-group>
       <ng-template #suffixButton>
         <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
@@ -16,21 +31,25 @@
     </div>
     <div class="navigation">
       <nav class="nav">
+<!--        <h3 class="nav-item">-->
+<!--          <a nz-dropdown [nzDropdownMenu]="menu">-->
+<!--            Все категории-->
+<!--            <i nz-icon nzType="down"></i>-->
+<!--          </a>-->
+<!--          <nz-dropdown-menu #menu="nzDropdownMenu">-->
+<!--            <ul nz-menu nzSelectable>-->
+<!--              <li *ngFor="let category of categories$ | async" nz-menu-item>-->
+<!--                <a [routerLink]="['/category/', category.id]">{{ category.name | firstUp }}</a>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </nz-dropdown-menu>-->
+<!--        </h3>-->
+
         <h3 class="nav-item">
-          <a nz-dropdown [nzDropdownMenu]="menu">
-            Все категории
-            <i nz-icon nzType="down"></i>
+          <a nz-dropdown>
+            Successful Dиск
           </a>
-          <nz-dropdown-menu #menu="nzDropdownMenu">
-            <ul nz-menu nzSelectable>
-              <li *ngFor="let category of categories$ | async" nz-menu-item>
-                <a [routerLink]="['/category/', category]">{{ category | firstUp }}</a>
-              </li>
-            </ul>
-          </nz-dropdown-menu>
         </h3>
-        <h3 class="nav-item"><a>Тендер</a></h3>
-        <h3 class="nav-item"><a>Ярмарка продуктов</a></h3>
       </nav>
       <nz-avatar
         nz-dropdown
@@ -41,7 +60,7 @@
       ></nz-avatar>
       <nz-dropdown-menu #profile="nzDropdownMenu">
         <ul nz-menu nzSelectable>
-          <li nz-menu-item><i nz-icon nzType="shopping" nzTheme="outline"></i>Мои заказы</li>
+          <li nz-menu-item><i nz-icon nzType="shopping" nzTheme="outline"></i>Мои машины</li>
           <li nz-menu-item><i nz-icon nzType="heart" nzTheme="outline"></i>Мои избранные</li>
           <li nz-menu-divider></li>
           <li nz-menu-item><i nz-icon nzType="appstore" nzTheme="outline"></i>Личные данные</li>
